@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -27,9 +28,11 @@ public class Admin {
 	private int id;
 	
 	@Column(name="username")
+	@NotBlank
 	private String adminKey;
 	
 	@Column(name="password")
+	@NotBlank
 	private String adminSecret;
 	
 	@Column(name="created_on")
@@ -79,6 +82,18 @@ public class Admin {
 	public void setUpdated_on(Date updated_on) {
 		this.updated_on = updated_on;
 	}
+
+	public Admin(int id, String adminKey, String adminSecret, Date created_on, Date updated_on) {
+		super();
+		this.id = id;
+		this.adminKey = adminKey;
+		this.adminSecret = adminSecret;
+		this.created_on = created_on;
+		this.updated_on = updated_on;
+	}
 	
+	public Admin(){
+		
+	}
 	
 }
